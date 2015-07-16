@@ -1,0 +1,120 @@
+Docker meetup - Buenos Aires, Argentina
+Container checkpoint / restore
+16 Jul 2015
+Tags: docker, criu, checkpoint, restore
+
+Marcos Nils Lilljedahl
+https://www.github.com/marcosnils
+@marcosnils
+marcos@mantika.ca
+
+* Who am I?
+
+.image ./marcos.jpg
+
+- Doing cool stuff @ Mantika.ca
+- OS Contributor
+- Java, Ruby, Go, C
+- Jedis, Goreq, Goblin, InfluxDB, Go, Jedisque 
+- Former Gamer, Crossfitter
+
+* What happened at DockerCon
+
+Docker container live migration:
+
+.iframe https://www.youtube.com/embed/mL9AFkJJAq0?start=1324 450 900
+
+
+* Ok, so what's this black magic?
+
+Docker meets [[http://criu.org/][CRIU]] (Checkpoint / Restore in Userspace):
+
+.image ./criu.png
+
+
+            The core idea of the restore process is to implement the binary handler that can execve-ute
+            image files recreating the register and the memory state of a task. Restoring the process 
+            tree and opening files is done completely in the user space, i.e. when restoring the subtree
+            of processes I first fork all the tasks in respective order, then open required files and 
+            then call execve() to restore registers and memory.
+
+
+
+
+* CRIU
+
+
+- Freezing a running application.
+- Checkpointing the address space and state of the entire process tree to a collection of “image” files.
+- Restoring the process tree from checkpoint image files.
+- Resuming application from the point it was frozen.
+
+Benefits:
+
+- Stop and restart the Docker daemon (say for an upgrade or reboot) without having to kill the running containers and restarting them from scratch, losing precious work they had done when they were stopped
+
+- "Forensic debugging" of processes running in a container by examining their checkpoint images (open files, memory segments, etc.)"
+
+- Migrate containers by restoring them on a different machine
+
+* Docker External C/R
+
+.image external.jpg
+
+Invoking CRIU directly to dump a process tree running inside a container 
+
+* Problems encountered
+
+- External bind mounts (hostname, resolv, hosts) (--ext-mount-map)
+- AUFS path names. Wrong map files when performing `execv` (--root)
+- Cgroups task, visibility, cgroup FS (--manage-cgroups).
+- Container state as "Exited"
+- Plumbing commands will not work
+- Restore process parent /etc/init
+
+
+* Docker Native C/R
+
+.image native.jpg
+
+        We’ve been actively working with upstream and community developers to add 
+        support in Docker for native C/R and hope that checkpoint and restore commands
+        will be introduced in Docker 1.8.  As of this writing, it’s possible to C/R a 
+        container externally because this functionality was recently merged in libcontainer.
+
+- Pipe deletion problem (--inherit-fd)
+
+* Bringing the future to your hands now
+
+There's this [[PR][https://github.com/docker/docker/pull/13602]] which is being discussed at docker repo which includes native support to docker which is planned for 1.8 milestone.
+
+So I thought, why not just build my own docker version using that PR and try native C/R today?.
+
+And the result was....
+
+* Demo
+
+* How can I get my hands into this?
+
+Easy way:
+
+- Ask the presenter for his Vagrant box (BYOPD)
+- Use [[this][https://registry.hub.docker.com/u/marcosnils/docker-cr/]] docker image. (Remember about host kernel)
+
+Hard way:
+
+- Download and compile Docker/Criu dev environment 
+- Dig throug Docker/Criu source code to understand why it's not working (don't forget to check issue tracker as well)
+- Apply corresponding PR's / Fixes and re-compile everything again (several times..)
+- And of course..  *don't* *forget* *to* *recompile* *your* *kernel*
+
+* Q&A
+
+* Sources
+
+.link http://criu.org/
+.link http://www.slideshare.net/SaiedKazemi/lpc-docker-container-cr-with-criu
+.link https://github.com/docker/docker
+.link http://kimh.github.io/blog/en/criu/experiment-to-suspend-and-resume-docker-container-with-criu/
+
+#Add asciinema here
