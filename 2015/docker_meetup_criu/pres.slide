@@ -112,6 +112,7 @@ Hard way:
 
 * Sources
 
+.link http://go-talks.appspot.com/github.com/marcosnils/talks/2015/docker_meetup_criu/pres.slide#1
 .link http://criu.org/
 .link http://www.slideshare.net/SaiedKazemi/lpc-docker-container-cr-with-criu
 .link https://github.com/docker/docker
