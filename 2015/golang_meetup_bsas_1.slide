@@ -178,6 +178,7 @@ VS
 - C / C++ / ASM bindings
 - GC internals and hints
 - Golang memory layout/model
-- Concurrency patterns
+- Concurrency patterns / RPC
 - Golang development
 - Gomobile
+- Scheduler
