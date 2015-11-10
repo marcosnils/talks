@@ -1,0 +1,183 @@
+Golang meetup - Buenos Aires, Argentina
+GoTCHAS & useful tips
+10 Oct 2015
+Tags: golang, tips, gotchas, meetup, getting, started
+
+Marcos Nils Lilljedahl
+https://www.github.com/marcosnils
+@marcosnils
+marcos@mantika.ca
+
+* Who am I?
+
+.image ./golang_meetup_bsas_1/marcos.jpg
+
+- Doing Machine Learning @ Mantika.ca
+- 2+ years working with Go (1.2)
+- Golang trainer @ [[https://www.ardanlabs.com/][Ardan labs]]
+- OS Contributor
+- Java, Python, Go, C
+- Go projects: Goblin, Govipe, Vault, go-supertest, Goreq
+
+
+* Some principles
+- Focuses in real world practices instead of academic theory
+- Static type language focused on productivity
+- Simple and minimalistic (package exports)
+- Composition vs Inheritance
+- Concurrency model
+
+* Where should I start
+- [[http://golang.org/]]
+- [[https://tour.golang.org/]]
+- [[https://golang.org/pkg/]]
+- [[https://play.golang.org/]]
+- [[https://godoc.org/]]
+- [[https://golang.org/doc/effective_go.html]]
+- [[https://golang.org/ref/spec]]
+
+
+* Where should I start (cont..)
+- [[https://blog.golang.org]]
+- [[https://gophers.slack.com/messages/argentina]]
+- [[https://groups.google.com/forum/#!forum/golang-nuts][Golang nuts]]
+- [[https://groups.google.com/forum/#!forum/golang-dev][Golang dev]]
+- [[https://forum.golangbridge.org][Golang bridge]]
+
+
+* IDE
+- [[https://github.com/fatih/vim-go][VIM]]
+- [[https://github.com/DisposaBoy/GoSublime][Sublime]]
+- [[https://github.com/go-lang-plugin-org/go-lang-idea-plugin][IDEA]]
+- [[https://github.com/dominikh/go-mode.el][EMACS]]
+
+
+* Get to know your best friends
+- [[https://golang.org/cmd/gofmt/][gofmt]]
+- [[https://golang.org/cmd/vet/][govet]]
+- [[https://github.com/golang/lint][golint]]
+- [[https://godoc.org/golang.org/x/tools/cmd/goimports][goimports]]
+- [[https://godoc.org/golang.org/x/tools/cover][cover]]
+- [[https://godoc.org/golang.org/x/tools/cmd/godoc][godoc]]
+
+* The GOPATH dilema / Reproducible builds
+- The standard way
+- GOPATH mangling with [[][wgo]] [[][godep]]
+- New building tools like [[http://getgb.io][gb]]
+- The Go 1.5 [[https://docs.google.com/document/d/1Bz5-UB7g2uPBdOx-rw5t9MxJwkfpx90cqG9AFL0JAYo/edit][vendor experiment]]
+- Thirt party services like [[http://gopkg.in]]
+
+
+* Common gotchas - The range clause
+
+.play golang_meetup_bsas_1/range.go
+
+
+* Common gotchas - The append function
+
+.play golang_meetup_bsas_1/append.go
+
+.caption [[https://blog.golang.org/slices][Arrays & slices]] and [[http://blog.golang.org/go-slices-usage-and-internals][Slices internals]]
+
+    type sliceHeader struct {
+            Length        int
+            ZerothElement *byte
+    }
+
+    slice := sliceHeader{
+            Length:        50,
+            ZerothElement: &buffer[100],
+    }
+
+
+* Common gotchas - Variable shadowing
+
+.play golang_meetup_bsas_1/shadow.go /START OMIT/,/END OMIT/
+
+
+
+* Tips & tricks - For-select break
+
+.code golang_meetup_bsas_1/for-select.go /START OMIT/,/END OMIT/
+
+VS
+
+.code golang_meetup_bsas_1/for-select-tip.go /START OMIT/,/END OMIT/
+
+
+* Tips & tricks - Tagged litterals
+
+.play golang_meetup_bsas_1/tag-literals.go /START OMIT/,/END OMIT/
+
+VS
+
+.play golang_meetup_bsas_1/tag-literals-tip.go /START OMIT/,/END OMIT/
+
+
+* Tips & tricks - Return function calls
+
+     func bar() (string, error) {
+        v, err := foo()
+        if err != nil {
+            return "", err
+        }
+        return v, nil
+     } 
+
+VS
+
+    func bar() (string, error) {
+        return foo()
+    }
+
+
+* Tips & tricks - Use wrapper functions
+
+    func foo() {
+        mu.Lock()
+        defer mu.Unlock()
+
+        // foo related stuff
+    }
+
+    func bar() {
+        mu.Lock()
+        defer mu.Unlock()
+
+        // bar related stuff
+    }
+
+VS
+
+    func withLockContext(fn func()) {
+        mu.Lock
+        defer mu.Unlock()
+
+        fn()
+    }
+
+
+* Tips & tricks - Use wrapper functions (cont..)
+
+    func foo() {
+        withLockContext(func() {
+            // foo related stuff
+        })
+    }
+
+    func bar() {
+        withLockContext(func() {
+            // bar related stuff
+        })
+    }
+
+
+
+* Advanced topics
+- Debugging, profiling & benchmarking
+- C / C++ / ASM bindings
+- GC internals and hints
+- Golang memory layout/model
+- Concurrency patterns
+- Golang development
+- Gomobile
