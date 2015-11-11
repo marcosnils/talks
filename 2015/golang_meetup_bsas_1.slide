@@ -24,7 +24,7 @@ marcos@mantika.ca
 - Focuses in real world practices instead of academic theory
 - Static type language focused on productivity
 - Simple and minimalistic (package exports)
-- Composition vs Inheritance
+- Composition / Embedding vs Inheritance
 - Concurrency model
 
 * Where should I start
@@ -50,6 +50,8 @@ marcos@mantika.ca
 - [[https://github.com/DisposaBoy/GoSublime][Sublime]]
 - [[https://github.com/go-lang-plugin-org/go-lang-idea-plugin][IDEA]]
 - [[https://github.com/dominikh/go-mode.el][EMACS]]
+
+Sorry Atom =(
 
 
 * Get to know your best friends
@@ -172,7 +174,6 @@ VS
     }
 
 
-
 * Advanced topics
 - Debugging, profiling & benchmarking
 - C / C++ / ASM bindings
@@ -182,3 +183,11 @@ VS
 - Golang development
 - Gomobile
 - Scheduler
+
+* Final remarks
+
+- Use the STDLIB as much as you can
+- No, there's no stable debugger for the moment, don't ask for it!.
+- Write benchmarks, and look at ASM code in case of performance issues
+- If you're dealing with concurrency, use the race detector
+- Be [[https://github.com/golang/go/wiki/CodeReviewComments][idiomatic]]
