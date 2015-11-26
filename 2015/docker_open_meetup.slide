@@ -1,0 +1,88 @@
+Docker meetup #7 - Buenos Aires, Argentina
+Dockercon EU News
+26 Nov 2015
+Tags: docker, dockercon, 2015, europe
+
+Marcos Nils Lilljedahl
+https://www.github.com/marcosnils
+@marcosnils
+marcos@mantika.ca
+
+* Agenda
+
+- DockerCon News
+- Introducción a compose (Mauricio Garavaglia)
+- Logging en docker (Juan Wajnerman, Santiago Palladino)
+- Docker at MURAL (Matías De Carli)
+- Dedis (Guido Vilariño)
+- Montando un single-host PaaS con Dokku (Matías Lang)
+
+* Transition
+
+.image ./docker_open_meetup/bunnies.jpg
+
+* Who am I?
+
+.image ./golang_meetup_bsas_1/marcos.jpg
+
+- Doing cool stuff @ Mantika.ca
+- OS Contributor
+- Member in Docker community speakers program
+- Former Gamer, Crossfitter
+
+* Dockercon updates - Docker 1.9 release
+
+- Add support for Multi-Host networking
+- Persistent Storage drivers
+- Docker swarm 1.0
+- Registry updates (read-only mode) 
+- Docker toolbox with windows/mac support 
+- Add support for seccomp & user namespaces
+
+* Dockercon updates - Improved security
+
+- Hardware crypto support for Docker Content Trust
+- Private key rotation support
+- Project Nautilus
+
+
+* Dockercon updates - Improved security (cont..)
+.image ./docker_open_meetup/nautilus.png _ 1000
+
+* Dockercon updates - Improved security (cont..)
+.image ./docker_open_meetup/nautilus1.png _ 900
+
+* Dockercon updates - Improved security (cont..)
+.image ./docker_open_meetup/nautilus2.png _ 900
+
+* Dockercon updates - Improved security (cont..)
+.image ./docker_open_meetup/nautilus3.png _ 900
+
+* Dockercon updates - Improved security (cont..)
+.image ./docker_open_meetup/nautilus4.png _ 900
+
+* Docker updates - Container as a Service platform
+
+- Automated builds 2.0
+- Tutum fully integration
+- Docker control plane
+
+* Docker updates - Closing session & cool hacks
+
+- Dockercraft: Visualize docker containers in minecraft
+.image ./docker_open_meetup/minecraft1.png
+- CMT: Container Migration Tool
+- Unikernels meet docker: Deploying unikernels with docker 
+
+
+
+
+* Sources
+
+.link https://blog.docker.com/2015/11/docker-1-9-production-ready-swarm-multi-host-networking/
+.link http://blog.docker.com/2015/11/docker-content-trust-yubikey/
+.link https://goto.docker.com/try-universal-control-plane.html
+.link https://www.docker.com/universal-control-plane
+.link http://www.slideshare.net/Docker/official-repos-and-project-nautilus
+.link http://blog.docker.com/2015/11/dockercraft/
+.link http://blog.docker.com/2015/11/dockercon-eu-2015-container-migration-tool/
