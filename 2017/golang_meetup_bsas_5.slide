@@ -1,0 +1,67 @@
+Golang meetup #5 - Buenos Aires, Argentina
+Golang + APIs = <3
+16 Feb 2016
+Tags: golang, apis, goreq, meetup, mantika
+
+Marcos Nils Lilljedahl
+https://www.github.com/marcosnils
+@marcosnils
+marcos@mantika.ca
+
+* Who am I?
+
+.image ./golang_meetup_bsas_5/marcos.jpg
+
+- Doing Machine Learning @ Mantika.ca
+- ~4 years working with Go (1.1)
+- GopherconBR 2016 Speaker
+- First Golang bootcamp @ [[https://www.itmaster.com.ar/cursos/curso-go][IT Master]]
+- OS Contributor (Java, Python, Go, Nodejs, C)
+- Go projects: Goblin, Govipe, Vault, go-supertest, Goreq, Play-with-docker...
+
+
+* Simple request
+
+.play golang_meetup_bsas_5/basic.go 
+
+* Simple request (close body)
+
+.play -edit golang_meetup_bsas_5/basic_close.go /func main/,/^}/ 
+
+
+* Simple request (check errs)
+
+.play golang_meetup_bsas_5/basic_close_errs.go /func main/,/^}/ 
+
+
+* Simple JSON
+
+.play golang_meetup_bsas_5/basic_json.go /START/,/END/ 
+
+* Simple JSON (DefaultClient)
+
+Watch out for [[https://golang.org/pkg/net/http/#Client][DefaultClient]]
+
+.play golang_meetup_bsas_5/basic_client_json.go /START/,/END/ 
+
+* Working with inputs 
+
+.code golang_meetup_bsas_5/basic_client_input.go /START 1/,/END 1/ 
+.play golang_meetup_bsas_5/basic_client_input.go /START 2/,/END 2/ 
+
+
+* Concurrency simple
+
+.play golang_meetup_bsas_5/basic_concurrency.go /START /,/END /
+
+
+* Concurrency improved
+
+.code golang_meetup_bsas_5/basic_concurrency_improved.go /START 1/,/END 1/
+.play golang_meetup_bsas_5/basic_concurrency_improved.go /START 2/,/END 2/
+
+* Homework
+
+- Check [[https://blog.golang.org/context][Context]] patterns
+
+

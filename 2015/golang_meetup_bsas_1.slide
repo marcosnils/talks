@@ -72,12 +72,12 @@ Sorry Atom =(
 
 * Common gotchas - The range clause
 
-.play golang_meetup_bsas_1/range.go
+.play -edit golang_meetup_bsas_1/range.go
 
 
 * Common gotchas - The append function
 
-.play golang_meetup_bsas_1/append.go
+.play -edit golang_meetup_bsas_1/append.go
 
 .caption [[https://blog.golang.org/slices][Arrays & slices]] and [[http://blog.golang.org/go-slices-usage-and-internals][Slices internals]]
 
@@ -94,7 +94,7 @@ Sorry Atom =(
 
 * Common gotchas - Variable shadowing
 
-.play golang_meetup_bsas_1/shadow.go /START OMIT/,/END OMIT/
+.play -edit golang_meetup_bsas_1/shadow.go /START OMIT/,/END OMIT/
 
 
 
@@ -106,10 +106,9 @@ VS
 
 .code golang_meetup_bsas_1/for-select-tip.go /START OMIT/,/END OMIT/
 
-
 * Tips & tricks - Tagged litterals
 
-.play golang_meetup_bsas_1/tag-literals.go /START OMIT/,/END OMIT/
+.play -edit golang_meetup_bsas_1/tag-literals.go /START OMIT/,/END OMIT/
 
 VS
 
